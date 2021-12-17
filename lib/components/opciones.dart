@@ -1,4 +1,4 @@
-import 'package:encuestas_flutter/components/itemopcion.dart';
+import 'package:encuestas_flutter/components/itemcheckopcion.dart';
 import 'package:encuestas_flutter/provider/sigleencuestaprovider.dart';
 
 import 'package:flutter/material.dart';
@@ -16,6 +16,7 @@ class Opciones extends StatefulWidget {
 class _OpcionesState extends State<Opciones> {
   List<Map> opciones = [];
   List<Widget> options = [];
+  int select = 0;
   @override
   void initState() {
     //options = _builderOpcion();
@@ -32,6 +33,7 @@ class _OpcionesState extends State<Opciones> {
 
   List<Widget> _builderOpcion() {
     final encprov = Provider.of<SingleEncuestaProvider>(context);
+
     print('crear');
     List<Widget> opcion = [];
     List<dynamic> opciones = encprov.preguntas[widget.indexpreg]['opciones'];
@@ -39,10 +41,39 @@ class _OpcionesState extends State<Opciones> {
     print('----------------------------');
     print(smult);
     for (var i = 0; i < opciones.length; i++) {
-      opcion.add(ItemOpcion(
-        opcion: opciones[i]['opcion'],
-        seleccionMult: smult,
-      ));
+      if (smult) {
+        opcion.add(ItemCheckOpcion(
+          indexpreg: widget.indexpreg,
+          indexop: i,
+          opcion: opciones[i]['opcion'],
+        ));
+      } else {
+        opcion.add(
+          Container(
+              child: RadioListTile<int>(
+                  value: i,
+                  activeColor: Colors.white,
+                  selected: i == select,
+                  title: Text(
+                    opciones[i]['opcion'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  groupValue: select,
+                  selectedTileColor: Colors.white,
+                  onChanged: (valor) {
+                    print(valor);
+                    setState(() {
+                      select = valor!;
+                    });
+                  }),
+              decoration: BoxDecoration(
+                  color: select == i ? encprov.color : null,
+                  border: Border.all(
+                    color: select == i ? Colors.white : Colors.white24,
+                  ),
+                  borderRadius: BorderRadius.circular(15))),
+        );
+      }
     }
     return opcion;
   }

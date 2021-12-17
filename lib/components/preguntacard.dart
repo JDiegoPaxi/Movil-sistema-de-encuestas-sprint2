@@ -26,14 +26,30 @@ class _PreguntaCardState extends State<PreguntaCard>
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-            child: Text(
-              '${widget.index + 1}' +
-                  '. ' +
-                  encprov.preguntas[widget.index]['descripcion'],
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text(
+                    '${widget.index + 1}. ',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    encprov.preguntas[widget.index]['descripcion'],
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                    maxLines: null,
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
@@ -58,6 +74,7 @@ class _PreguntaCardState extends State<PreguntaCard>
         ? TextField(
             keyboardType: TextInputType.multiline,
             maxLines: null,
+            decoration: InputDecoration(hintText: 'Escriba su respuesta aqui'),
           )
         : Opciones(indexpreg: widget.index);
   }

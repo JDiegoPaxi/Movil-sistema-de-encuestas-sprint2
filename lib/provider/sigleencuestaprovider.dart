@@ -26,4 +26,17 @@ class SingleEncuestaProvider with ChangeNotifier {
     color = c;
     print(ide);
   }
+
+  void sigindexSeccion() {
+    indexseccion++;
+    preguntas = secciones[indexseccion]['preguntas'];
+    notifyListeners();
+  }
+
+  void antindexSeccion() {
+    indexseccion--;
+    notifyListeners();
+  }
+
+  bool existesig() => indexseccion != secciones.length - 1;
 }

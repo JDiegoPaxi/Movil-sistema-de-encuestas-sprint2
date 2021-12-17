@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 class ActionButton extends StatefulWidget {
   final IconData icono;
   final VoidCallback onTap;
-  ActionButton({Key? key, required this.onTap, required this.icono})
+  final Color color;
+  final double iconsize;
+  ActionButton(
+      {Key? key,
+      required this.icono,
+      required this.iconsize,
+      required this.onTap,
+      required this.color})
       : super(key: key);
 
   @override
@@ -20,12 +27,11 @@ class _ActionButtonState extends State<ActionButton> {
           child: Icon(
             //Icons.assignment,
             widget.icono,
-            color: Colors.white,
+            color: widget.color,
+            size: widget.iconsize,
           ),
           decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white,
-              ),
+              border: Border.all(color: widget.color, width: 3),
               borderRadius: BorderRadius.circular(10)),
         ),
         onTap: widget.onTap);

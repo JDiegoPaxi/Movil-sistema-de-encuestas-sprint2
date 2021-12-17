@@ -14,12 +14,18 @@ class EncuestasPage extends StatefulWidget {
 }
 
 class _EncuestasPageState extends State<EncuestasPage> {
+  @override
+  void initState() {
+    super.initState();
+    print('Comenzar new ');
+  }
+
   List<Color> color = [Color(0xff804000), Color(0xffb86320), Color(0xffbd8a3e)];
   @override
   Widget build(BuildContext context) {
     double alto = MediaQuery.of(context).size.height * 0.2;
     final seren = Provider.of<EncuestaProvider>(context, listen: true);
-
+    print('crear lista de encuesta');
     return Scaffold(
         backgroundColor: Color(0xfffccca8),
         appBar: AppBar(
@@ -75,6 +81,7 @@ class EncuestaCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
+            alignment: Alignment.centerLeft,
             padding: EdgeInsets.all(10),
             child: Text(
               this.nombre,
@@ -97,6 +104,8 @@ class EncuestaCard extends StatelessWidget {
             children: [
               ActionButton(
                   icono: Icons.assignment,
+                  iconsize: 20,
+                  color: Colors.white,
                   onTap: () {
                     print('encuesta realizadas');
                   }),
@@ -105,21 +114,23 @@ class EncuestaCard extends StatelessWidget {
               ),
               ActionButton(
                   icono: Icons.arrow_forward,
+                  iconsize: 20,
+                  color: Colors.white,
                   onTap: () {
                     final oneenc = Provider.of<SingleEncuestaProvider>(context,
                         listen: false);
                     oneenc.setterIDColor(ide, c);
                     print(oneenc.encuesta);
-                    Navigator.popAndPushNamed(context, 'encuesta');
+                    Navigator.pushNamed(context, 'encuesta');
                   })
             ],
           )
         ],
       ),
-      height: alto,
+      //height: alto,
       width: double.infinity,
       decoration: BoxDecoration(
-          color: Color(0xffb86320),
+          color: c, //Color(0xffb86320),
           borderRadius: BorderRadius.circular(25),
           boxShadow: <BoxShadow>[
             BoxShadow(

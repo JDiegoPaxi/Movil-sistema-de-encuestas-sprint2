@@ -86,11 +86,11 @@ class EncuestaCard extends StatelessWidget {
             child: Text(
               this.nombre,
               style: GoogleFonts.rubik(
-                  fontSize: 20,
+                  fontSize: 17,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
               overflow: TextOverflow.ellipsis,
-              maxLines: 1,
+              maxLines: 2,
             ),
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.2),
@@ -104,7 +104,7 @@ class EncuestaCard extends StatelessWidget {
             children: [
               ActionButton(
                   icono: Icons.assignment,
-                  iconsize: 20,
+                  iconsize: 25,
                   color: Colors.white,
                   onTap: () {
                     print('encuesta realizadas');
@@ -114,7 +114,7 @@ class EncuestaCard extends StatelessWidget {
               ),
               ActionButton(
                   icono: Icons.arrow_forward,
-                  iconsize: 20,
+                  iconsize: 25,
                   color: Colors.white,
                   onTap: () {
                     final oneenc = Provider.of<SingleEncuestaProvider>(context,

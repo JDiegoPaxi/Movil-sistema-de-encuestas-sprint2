@@ -1,3 +1,4 @@
+import 'package:encuestas_flutter/components/inputtext.dart';
 import 'package:encuestas_flutter/components/opciones.dart';
 import 'package:encuestas_flutter/provider/sigleencuestaprovider.dart';
 import 'package:flutter/material.dart';
@@ -71,11 +72,7 @@ class _PreguntaCardState extends State<PreguntaCard>
 
   Widget _getTypeRespuesta(bool type) {
     return type
-        ? TextField(
-            keyboardType: TextInputType.multiline,
-            maxLines: null,
-            decoration: InputDecoration(hintText: 'Escriba su respuesta aqui'),
-          )
+        ? InputText(indexpreg: widget.index)
         : Opciones(indexpreg: widget.index);
   }
 

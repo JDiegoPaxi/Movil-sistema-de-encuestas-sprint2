@@ -39,6 +39,12 @@ class _ItemCheckOpcionState extends State<ItemCheckOpcion> {
           onChanged: (bool? valor) {
             setState(() {
               b = !b;
+              if (b) {
+                op.guardarRespuesta(
+                    widget.indexpreg, widget.indexop, widget.opcion);
+              } else {
+                op.retirarRespuesta(widget.indexpreg, widget.indexop);
+              }
               print(valor);
             });
           }),

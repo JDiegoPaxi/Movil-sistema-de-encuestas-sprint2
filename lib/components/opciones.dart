@@ -16,7 +16,7 @@ class Opciones extends StatefulWidget {
 class _OpcionesState extends State<Opciones> {
   List<Map> opciones = [];
   List<Widget> options = [];
-  int select = 0;
+  int select = -1;
   @override
   void initState() {
     //options = _builderOpcion();
@@ -64,6 +64,8 @@ class _OpcionesState extends State<Opciones> {
                     print(valor);
                     setState(() {
                       select = valor!;
+                      encprov.updaterespuesta(
+                          widget.indexpreg, select, opciones[select]['opcion']);
                     });
                   }),
               decoration: BoxDecoration(

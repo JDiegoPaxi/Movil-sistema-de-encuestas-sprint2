@@ -32,4 +32,17 @@ class EncuestaService {
 
     return decode['encuesta']; //decode['encuesta'];
   }
+
+  Future<bool> enviarEncuesta(Map encuesta) async {
+    String url = url1 + 'sistemaencuestas/';
+
+    Map<String, String> headers = {"Content-type": "application/json"};
+    final body = json.encode(encuesta);
+    final resp = await http.post(Uri.parse(url), headers: headers, body: body);
+
+    final decode = json.decode(resp.body);
+    print(decode);
+
+    return decode['ok'];
+  }
 }
